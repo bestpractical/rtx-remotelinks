@@ -8,7 +8,26 @@ use List::Util 'first';
 
 =head1 NAME
 
-RTx-RemoteLinks - Conviently create links to ticket IDs in other RT instances
+RTx-RemoteLinks - Conveniently create links to ticket IDs in other RT instances
+
+=head1 DESCRIPTION
+
+With a small amount of configuration, this extension lets you enter new ticket
+links as C<foo:123> which are then displayed in the Links box as "Foo ticket
+#123" with a link to the remote RT instance.
+
+Currently remote ticket subjects are not fetched due to authentication
+complications, but this could be added in the future.
+
+=head1 CONFIGURATION
+
+    Set(%RemoteLinks,
+        Foo => 'example.com',               # assumes http:// and RT at the top-level path
+        Bar => 'https://example.net/rt',    # specifies https and a subpath for RT
+    );
+
+Make sure to add this plugin to C<@Plugins> as well, as described in
+L</INSTALLATION>.
 
 =cut
 
@@ -72,6 +91,8 @@ Add this line:
     Set(@Plugins, qw(RTx::RemoteLinks));
 
 or add C<RTx::RemoteLinks> to your existing C<@Plugins> line.
+
+Configure your remote RT instances per L</CONFIGURATION> above.
 
 =item Clear your mason cache
 
