@@ -1,0 +1,37 @@
+NAME
+    RTx-RemoteLinks - Conviently create links to ticket IDs in other RT
+    instances
+
+INSTALLATION
+    "perl Makefile.PL"
+    "make"
+    "make install"
+        May need root permissions
+
+    Edit your /opt/rt4/etc/RT_SiteConfig.pm
+        Add this line:
+
+            Set(@Plugins, qw(RTx::RemoteLinks));
+
+        or add "RTx::RemoteLinks" to your existing @Plugins line.
+
+    Clear your mason cache
+            rm -rf /opt/rt4/var/mason_data/obj
+
+    Restart your webserver
+
+AUTHOR
+    Thomas Sibley <trs@bestpractical.com>
+
+BUGS
+    All bugs should be reported via email to bug-RTx-RemoteLinks@rt.cpan.org
+    <mailto:bug-RTx-RemoteLinks@rt.cpan.org> or via the web at rt.cpan.org
+    <http://rt.cpan.org/Public/Dist/Display.html?Name=RTx-RemoteLinks>.
+
+LICENSE AND COPYRIGHT
+    This software is Copyright (c) 2013 by Best Practical Solutions
+
+    This is free software, licensed under:
+
+      The GNU General Public License, Version 2, June 1991
+
