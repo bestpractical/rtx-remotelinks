@@ -26,6 +26,11 @@ complications, but this could be added in the future.
         Bar => 'https://example.net/rt',    # specifies https and a subpath for RT
     );
 
+Prefixes are case insensitive, so both "Foo" and "foo" and "fOo" will work.
+
+Once you create links in the system using a prefix, you should leave it
+configured.
+
 Make sure to add this plugin to C<@Plugins> as well, as described in
 L</INSTALLATION>.
 
