@@ -13,7 +13,7 @@ my $pretty_remote = sub {
     return $uri->can("host") ? $uri->host : $uri;
 };
 
-my @alias = keys %remote;
+my @alias = sort { lc($a) cmp lc($b) } keys %remote;
 </%init>
 <br />
 % if (@alias == 1) {
