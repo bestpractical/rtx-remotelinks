@@ -16,6 +16,7 @@ meta-spec:
 name: RTx-RemoteLinks
 no_index:
   directory:
+    - html
     - inc
 resources:
   license: http://opensource.org/licenses/gpl-license.php
