@@ -4,9 +4,54 @@ package RTx::RemoteLinks;
 
 our $VERSION = '0.01';
 
+use List::Util 'first';
+
 =head1 NAME
 
 RTx-RemoteLinks - Conviently create links to ticket IDs in other RT instances
+
+=cut
+
+require RT::Config;
+$RT::Config::META{RemoteLinks} = { Type => 'HASH' };
+
+sub LookupRemote {
+    my $class = shift;
+    my $alias = $class->CanonicalizeAlias(shift)
+        or return;
+
+    my $remote = (RT->Config->Get("RemoteLinks") || {})->{$alias};
+       $remote = "http://$remote" unless $remote =~ m{^https?://}i;
+
+    return wantarray ? ($alias, $remote) : $remote;
+}
+
+sub CanonicalizeAlias {
+    my $class   = shift;
+    my $alias   = shift or return;
+    my %remotes = RT->Config->Get("RemoteLinks");
+    return first { lc $_ eq lc $alias }
+           sort keys %remotes;
+}
+
+{
+    require RT::URI;
+    no warnings 'redefine';
+
+    my $_GetResolver = RT::URI->can("_GetResolver")
+        or die "No RT::URI::_GetResolver()?";
+
+    *RT::URI::_GetResolver = sub {
+        my $self   = shift;
+        my $scheme = shift;
+
+        if (RTx::RemoteLinks->CanonicalizeAlias($scheme)) {
+            $scheme = "remote-rt";
+        }
+
+        return $_GetResolver->($self, $scheme, @_);
+    };
+}
 
 =head1 INSTALLATION 
 
