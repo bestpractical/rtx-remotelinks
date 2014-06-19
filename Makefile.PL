@@ -1,10 +1,11 @@
 use inc::Module::Install;
 
-
 RTx 'RTx-RemoteLinks';
-all_from 'lib/RTx/RemoteLinks.pm';
-readme_from 'lib/RTx/RemoteLinks.pm';
-license  'gplv2';
+
+repository 'https://github.com/bestpractical/rtx-remotelinks';
+
+requires_rt '4.0.0';
+rt_too_new '4.4.0';
 
 sign;
 WriteAll;

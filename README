@@ -4,7 +4,7 @@ NAME
 
 DESCRIPTION
     With a small amount of configuration, this extension lets you enter new
-    ticket links as "foo:123" which are then displayed in the Links box as
+    ticket links as foo:123 which are then displayed in the Links box as
     "Foo ticket #123" with a link to the remote RT instance.
 
     Currently remote ticket subjects are not fetched due to authentication
@@ -26,17 +26,21 @@ CONFIGURATION
     "INSTALLATION".
 
 INSTALLATION
-    "perl Makefile.PL"
-    "make"
-    "make install"
+    perl Makefile.PL
+    make
+    make install
         May need root permissions
 
     Edit your /opt/rt4/etc/RT_SiteConfig.pm
-        Add this line:
+        If you are using RT 4.2 or greater, add this line:
+
+            Plugin('RTx::RemoteLinks');
+
+        For 4.0, add this line:
 
             Set(@Plugins, qw(RTx::RemoteLinks));
 
-        or add "RTx::RemoteLinks" to your existing @Plugins line.
+        or add RTx::RemoteLinks to your existing @Plugins line.
 
         Configure your remote RT instances per "CONFIGURATION" above.
 
@@ -46,15 +50,20 @@ INSTALLATION
     Restart your webserver
 
 AUTHOR
-    Thomas Sibley <trs@bestpractical.com>
+    Best Practical Solutions, LLC <modules@bestpractical.com>
 
 BUGS
-    All bugs should be reported via email to bug-RTx-RemoteLinks@rt.cpan.org
-    <mailto:bug-RTx-RemoteLinks@rt.cpan.org> or via the web at rt.cpan.org
-    <http://rt.cpan.org/Public/Dist/Display.html?Name=RTx-RemoteLinks>.
+    All bugs should be reported via email to
+
+        L<bug-RTx-RemoteLinks@rt.cpan.org|mailto:bug-RTx-RemoteLinks@rt.cpan.org>
+
+    or via the web at
+
+        L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RTx-RemoteLinks>.
 
 LICENSE AND COPYRIGHT
-    This software is Copyright (c) 2013 by Best Practical Solutions
+    This software is Copyright (c) 2013-2014 by Best Practical Solutions,
+    LLC
 
     This is free software, licensed under:
 
