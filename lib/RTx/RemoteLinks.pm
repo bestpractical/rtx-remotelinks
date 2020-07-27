@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package RTx::RemoteLinks;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 use List::Util 'first';
 
