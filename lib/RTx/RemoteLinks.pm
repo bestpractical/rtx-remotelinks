@@ -81,6 +81,23 @@ sub CanonicalizeAlias {
     };
 }
 
+if ( RT->Config->can('RegisterPluginConfig') ) {
+    RT->Config->RegisterPluginConfig(
+        Plugin  => 'RemoteLinks',
+        Content => [
+            {
+                Name => 'RemoteLinks',
+                Help => 'https://metacpan.org/pod/RTx::RemoteLinks#CONFIGURATION',
+            },
+        ],
+        Meta    => {
+            RemoteLinks => {
+                Type => 'HASH',
+            },
+        }
+    );
+}
+
 =head1 INSTALLATION
 
 =over
